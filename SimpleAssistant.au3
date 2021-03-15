@@ -13,7 +13,7 @@
 #include <FileConstants.au3>
 #include "Json.au3"
 
-HotKeySet("{F2}", GetMouse)
+HotKeySet("{F2}", Clipboard)
 HotKeySet("{F3}", Pause)
 HotKeySet("{F4}", RestartScript)
 HotKeySet("{F5}", Quit)
@@ -49,6 +49,11 @@ Func Main()
 			Next
 		EndIf
 	WEnd
+EndFunc
+
+Func Clipboard()
+    $temp = MouseGetPos()
+    ClipPut("[" & @CRLF & '"",' & @CRLF & $temp[0] & "," & @CRLF & $temp[1] & ","  & @CRLF & PixelGetColor($temp[0], $temp[1], $handle) & @CRLF & "]")
 EndFunc
 
 Func ClickM5()
